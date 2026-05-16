@@ -101,6 +101,153 @@ window.addEventListener('scroll', () => {
     }
 });
 
+/* ===== SECURITY FEATURES ===== */
+
+// Disable right-click context menu on images
+document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        return false;
+    });
+    
+    // Disable drag and drop
+    img.addEventListener('dragstart', (e) => {
+        e.preventDefault();
+        return false;
+    });
+    
+    // Disable pointer events for dragging
+    img.addEventListener('mousedown', (e) => {
+        if (e.button === 1 || e.button === 2) {
+            e.preventDefault();
+            return false;
+        }
+    });
+});
+
+// Prevent image copying and selection
+document.addEventListener('copy', (e) => {
+    if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+        return false;
+    }
+});
+
+// Disable right-click globally and show warning
+document.addEventListener('contextmenu', (e) => {
+    if (e.target.tagName === 'IMG' || e.target.closest('img')) {
+        e.preventDefault();
+        console.warn('Image protection: copying is disabled');
+        return false;
+    }
+});
+
+// Sanitize form input to prevent XSS
+function sanitizeInput(input) {
+    const textarea = document.createElement('textarea');
+    textarea.textContent = input;
+    return textarea.innerHTML;
+}
+
+// Enhanced form submission with sanitization
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Get and sanitize form inputs
+        const nameInput = contactForm.querySelector('input[placeholder="Your Name"]');
+        const emailInput = contactForm.querySelector('input[placeholder="Your Email"]');
+        const messageInput = contactForm.querySelector('textarea');
+        
+        // Sanitize values
+        const sanitizedName = sanitizeInput(nameInput.value);
+        const sanitizedEmail = emailInput.value; // Email is safer
+        const sanitizedMessage = sanitizeInput(messageInput.value);
+        
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(sanitizedEmail)) {
+            alert('Please enter a valid email');
+            return;
+        }
+        
+        // Validate input lengths
+        if (sanitizedName.length > 100 || sanitizedMessage.length > 5000) {
+            alert('Input exceeds maximum length');
+            return;
+        }
+        
+        // Show confirmation
+        const submitBtn = contactForm.querySelector('.submit-button');
+        const originalText = submitBtn.textContent;
+        
+        submitBtn.textContent = 'Message Sent';
+        submitBtn.style.opacity = '0.5';
+        submitBtn.disabled = true;
+        
+        // Reset form
+        contactForm.reset();
+        
+        // Reset button after 2 seconds
+        setTimeout(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.style.opacity = '1';
+            submitBtn.disabled = false;
+        }, 2000);
+    });
+}
+
+// Disable text selection on protected content
+document.querySelectorAll('img, .social-icon').forEach(el => {
+    el.addEventListener('selectstart', (e) => {
+        e.preventDefault();
+        return false;
+    });
+});
+
+// Prevent opening images in new tab via middle-click
+document.addEventListener('auxclick', (e) => {
+    if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+        return false;
+    }
+});
+
+// Monitor for injected content and remove suspicious elements
+const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        if (mutation.addedNodes.length) {
+            mutation.addedNodes.forEach((node) => {
+                if (node.nodeType === 1) { // Element node
+                    // Remove script tags
+                    const scripts = node.querySelectorAll('script');
+                    scripts.forEach(script => script.remove());
+                    
+                    // Remove event handlers
+                    if (node.hasAttributes()) {
+                        Array.from(node.attributes).forEach(attr => {
+                            if (attr.name.startsWith('on')) {
+                                node.removeAttribute(attr.name);
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    });
+});
+
+// Start monitoring for XSS attempts
+observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ['onclick', 'onload', 'onerror', 'onmouseover']
+});
+    }
+});
+
 // Add smooth transitions to all interactive elements
 document.addEventListener('DOMContentLoaded', () => {
     // Fade in page on load

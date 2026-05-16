@@ -1,0 +1,39 @@
+# TRILL ARCHIVE - Security Headers Configuration
+# This file provides additional security headers via Apache
+
+# Enable HTTPS
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+# X-Frame-Options - Prevent clickjacking
+Header always set X-Frame-Options "DENY"
+
+# X-Content-Type-Options - Prevent MIME sniffing
+Header always set X-Content-Type-Options "nosniff"
+
+# X-XSS-Protection - XSS protection
+Header always set X-XSS-Protection "1; mode=block"
+
+# Referrer-Policy - Control referrer information
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+# Content Security Policy - Restrict resource loading
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+
+# Permissions-Policy - Feature control
+Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
+
+# Cache Control - Prevent caching of sensitive content
+Header always set Cache-Control "public, max-age=3600, must-revalidate"
+
+# Remove Server information
+Header always unset Server
+Header always unset X-Powered-By
+Header always unset X-AspNet-Version
+
+# Disable directory listing
+Options -Indexes
+
+# Redirect HTTP to HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

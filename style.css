@@ -576,3 +576,24 @@ body::before {
 .active {
     color: var(--primary-white);
 }
+
+/* Image Protection */
+img {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    pointer-events: none;
+    -webkit-touch-callout: none;
+}
+
+.responsive-img,
+.social-icon,
+.blog-post-image {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-drag: none;
+}
