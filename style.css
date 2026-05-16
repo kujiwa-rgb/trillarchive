@@ -417,7 +417,7 @@ body::before {
 
 /* Footer */
 .footer {
-    background: var(--secondary-black);
+    background: #000000;
     border-top: 1px solid var(--tertiary-black);
     padding: 3rem 2rem;
     text-align: center;
@@ -428,6 +428,35 @@ body::before {
     margin: 0.5rem 0;
     font-size: 0.9rem;
     letter-spacing: 0.5px;
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.social-links a {
+    display: inline-block;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.social-icon {
+    height: 75px;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(0%);
+    transition: var(--transition);
+    opacity: 0.8;
+}
+
+.social-links a:hover .social-icon {
+    opacity: 1;
+    transform: scale(1.1);
 }
 
 /* Responsive Design */
