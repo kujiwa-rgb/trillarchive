@@ -290,6 +290,20 @@ body::before {
     font-size: 0.95rem;
 }
 
+.card-link {
+    display: inline-block;
+    color: var(--primary-white);
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: var(--transition);
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+.card-link:hover {
+    color: var(--secondary-gray);
+}
+
 /* Film Items */
 .film-item {
     cursor: pointer;
@@ -314,6 +328,7 @@ body::before {
     font-size: 1.2rem;
     letter-spacing: 1px;
     color: var(--primary-white);
+    margin-bottom: 0.5rem;
 }
 
 /* Blog Section */
@@ -362,6 +377,38 @@ body::before {
 
 .read-more:hover {
     color: var(--secondary-gray);
+}
+
+/* Media Images */
+.media-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.responsive-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border: 1px solid var(--accent-gray);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.responsive-img:hover {
+    border-color: var(--primary-white);
+    transform: scale(1.02);
+}
+
+/* Blog Post Images */
+.blog-post-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    margin: 1.5rem 0;
+    border: 1px solid var(--accent-gray);
+    display: block;
 }
 
 /* Contact Form */
