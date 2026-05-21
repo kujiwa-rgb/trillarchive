@@ -248,6 +248,7 @@ body::before {
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    height: fit-content;
 }
 
 .card::before {
@@ -277,6 +278,68 @@ body::before {
     margin-bottom: 1.5rem;
     border: 1px solid var(--accent-gray);
     background: var(--secondary-black);
+}
+
+.card-image-link {
+    display: block;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    text-decoration: none;
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid var(--accent-gray);
+    transition: var(--transition);
+}
+
+.card-image-link:hover {
+    border-color: var(--primary-white);
+    transform: scale(1.02);
+}
+
+.card-image-thumb {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.film-image-link {
+    display: block;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    text-decoration: none;
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid var(--accent-gray);
+    transition: var(--transition);
+}
+
+.film-image-link:hover {
+    border-color: var(--primary-white);
+    transform: scale(1.02);
+}
+
+.film-thumbnail {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.image-card {
+    text-align: center;
+}
+
+.image-card .responsive-img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    border: 1px solid var(--accent-gray);
+    transition: var(--transition);
+    cursor: pointer;
+    margin-bottom: 1rem;
 }
 
 .card h3 {
@@ -388,12 +451,14 @@ body::before {
 }
 
 .responsive-img {
-    width: 100%;
+    width: auto;
     height: auto;
-    object-fit: cover;
+    max-width: 100%;
+    object-fit: contain;
     border: 1px solid var(--accent-gray);
     transition: var(--transition);
     cursor: pointer;
+    margin-bottom: 1rem;
 }
 
 .responsive-img:hover {

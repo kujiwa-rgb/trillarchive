@@ -245,8 +245,7 @@ observer.observe(document.body, {
     attributes: true,
     attributeFilter: ['onclick', 'onload', 'onerror', 'onmouseover']
 });
-    }
-});
+
 
 // Add smooth transitions to all interactive elements
 document.addEventListener('DOMContentLoaded', () => {
