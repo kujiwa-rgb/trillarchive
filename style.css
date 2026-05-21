@@ -313,6 +313,7 @@ body::before {
     overflow: hidden;
     border: 1px solid var(--accent-gray);
     transition: var(--transition);
+    aspect-ratio: 16 / 9;
 }
 
 .film-image-link:hover {
@@ -322,8 +323,8 @@ body::before {
 
 .film-thumbnail {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
     display: block;
 }
 
