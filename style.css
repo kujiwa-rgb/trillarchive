@@ -203,6 +203,7 @@ body::before {
     padding: 6rem 2rem;
     max-width: 1400px;
     margin: 0 auto;
+    margin-top: 80px;
 }
 
 .section-alt {

@@ -214,37 +214,35 @@ document.addEventListener('auxclick', (e) => {
     }
 });
 
-// Monitor for injected content and remove suspicious elements
-const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-        if (mutation.addedNodes.length) {
-            mutation.addedNodes.forEach((node) => {
-                if (node.nodeType === 1) { // Element node
-                    // Remove script tags
-                    const scripts = node.querySelectorAll('script');
-                    scripts.forEach(script => script.remove());
-                    
-                    // Remove event handlers
-                    if (node.hasAttributes()) {
-                        Array.from(node.attributes).forEach(attr => {
-                            if (attr.name.startsWith('on')) {
-                                node.removeAttribute(attr.name);
-                            }
-                        });
-                    }
-                }
-            });
-        }
-    });
-});
-
-// Start monitoring for XSS attempts
-observer.observe(document.body, {
-    childList: true,
-    subtree: true,
-    attributes: true,
-    attributeFilter: ['onclick', 'onload', 'onerror', 'onmouseover']
-});
+// Monitor for injected content and remove suspicious elements (DISABLED - interferes with article display)
+// const observer = new MutationObserver((mutations) => {
+//     mutations.forEach((mutation) => {
+//         if (mutation.addedNodes.length) {
+//             mutation.addedNodes.forEach((node) => {
+//                 if (node.nodeType === 1) { // Element node
+//                     // Remove script tags
+//                     const scripts = node.querySelectorAll('script');
+//                     scripts.forEach(script => script.remove());
+//                     
+//                     // Remove event handlers
+//                     if (node.hasAttributes()) {
+//                         Array.from(node.attributes).forEach(attr => {
+//                             if (attr.name.startsWith('on')) {
+//                                 node.removeAttribute(attr.name);
+//                             }
+//                         });
+//                     }
+//                 }
+//             });
+//         }
+//     });
+// });
+// observer.observe(document.body, {
+//     childList: true,
+//     subtree: true,
+//     attributes: true,
+//     attributeFilter: ['onclick', 'onload', 'onerror', 'onmouseover']
+// });
 
 
 // Add smooth transitions to all interactive elements

@@ -34,34 +34,37 @@
         </div>
     </nav>
 
-    <section class="hero">
-        <img src="photo_2026-04-27_15-52-14.jpg" alt="Blog Hero" class="hero-image">
-    </section>
-
     <main class="section">
         <div class="container">
             <h2 class="section-title">Archive Journals</h2>
             <p class="section-subtitle">Essays and observations on lost media, culture, and digital archaeology</p>
 
-            <div class="blog-list">
+            <div class="blog-list" id="blog-list">
                 <article class="blog-post">
                     <span class="blog-date">May 2026</span>
                     <h3>The Aesthetic of Digital Ruins</h3>
                     <img src="media/photo_2026-03-13_00-18-24.jpg" alt="Digital Ruins" class="blog-post-image">
                     <p>How forgotten digital archives shape our understanding of cultural memory and preservation in the modern age.</p>
-                    <a href="#" class="read-more">Read Article →</a>
+                    <a href="javascript:void(0);" class="read-more" data-article="1">Read Article →</a>
                 </article>
                 <article class="blog-post">
                     <span class="blog-date">April 2026</span>
-                    <h3>VHS as Cultural Artifact</h3>
+                    <h3>VHS Cultural Artifact</h3>
                     <p>Exploring the resurgence of analog media and its role in underground culture and nostalgic preservation.</p>
-                    <a href="#" class="read-more">Read Article →</a>
+                    <a href="javascript:void(0);" class="read-more" data-article="2">Read Article →</a>
                 </article>
                 <article class="blog-post">
                     <span class="blog-date">March 2026</span>
                     <h3>Underground Cinema's Return</h3>
                     <p>Independent filmmakers are rediscovering lost techniques and creating new works inspired by the archives.</p>
-                    <a href="#" class="read-more">Read Article →</a>
+                    <a href="javascript:void(0);" class="read-more" data-article="3">Read Article →</a>
+                </article>
+            </div>
+
+            <div class="article-view" id="article-view" style="display: none;">
+                <a href="#" class="back-to-list">← Back to Articles</a>
+                <article class="full-article" id="full-article-content">
+                    <!-- Article content will be inserted here -->
                 </article>
             </div>
 
