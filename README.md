@@ -1,4 +1,4 @@
-# TRILL ARCHIVE
+# TRILLARCHIVE.ORG
 
 A minimalist cinematic media website showcasing underground film culture, retro internet archives, lost media, and digital archaeology. Built with pure HTML, CSS, and JavaScript.
 
